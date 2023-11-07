@@ -12,10 +12,8 @@ from modules.models_alter import Model
 
 def parse_agrs():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--image_dir', type=str, default='/public/home/yangyan/YangYan/images_downsampled',
-                        help='the path to the directory containing the data.')
-    parser.add_argument('--ann_path', type=str, default='/public/home/jw12138/YZQ/mimic_all_paths.json',
-                        help='the path to the directory containing the data.')
+    parser.add_argument('--image_dir', type=str, default='/public/home/yangyan/YangYan/images_downsampled', help='the path to the directory containing the data.')
+    parser.add_argument('--ann_path', type=str, default='/public/home/jw12138/YZQ/DATA/mimic_all.json', help='the path to the directory containing the data.')
 
     # Data loader settings
     parser.add_argument('--dataset_name', type=str, default='mimic_cxr')
@@ -28,6 +26,7 @@ def parse_agrs():
     parser.add_argument('--visual_extractor', type=str, default='resnet50', help='the visual extractor to be used.')  # resnet18 resnet50 resnet101 densenet121 pvt
     parser.add_argument('--pretrained', type=bool, default=True, help='whether to load the pretrained visual extractor')
     parser.add_argument('--tags', type=int, default=0, help='whether to concatenate the MeSH in report')
+    parser.add_argument('--kernel', type=int, default=5, help='the dimension of Transformer.')
 
     # Model settings (for Transformer)
     parser.add_argument('--d_model', type=int, default=512, help='the dimension of Transformer.')
@@ -52,6 +51,7 @@ def parse_agrs():
 
     # Trainer settings
     parser.add_argument('--epochs', type=int, default=36, help='the number of training epochs.')
+    parser.add_argument('--RoundGap', type=int, default=4, help='the alternative training epochs in a round.')
     parser.add_argument('--save_dir', type=str, default='./results/res50clip_TD12_BS64_re5_seed9_losstlossv_lossret_lossrev_grandual_notags/', help='the patch to save the models.')
     parser.add_argument('--save_period', type=int, default=1, help='the saving period.')
     parser.add_argument('--monitor_mode', type=str, default='max', choices=['min', 'max'], help='whether to max or min the metric.')
@@ -74,8 +74,8 @@ def parse_agrs():
     parser.add_argument('--seed', type=int, default=9, help='.')
     parser.add_argument('--resume', type=str, help='resume training from the checkpiont')  
     parser.add_argument('--n_gpu', type=int, default=4, help='the number of gpus to be used.')
-    parser.add_argument('--gpu', type=str, default='0', help='GPU ID')
-    parser.add_argument('--gpus', type=str, default='0, 1, 2, 3', help='GPU IDs')
+    parser.add_argument('--gpu', type=str, default='0', help='GPU ID if n_pgu=1')
+    parser.add_argument('--gpus', type=str, default='0, 1, 2, 3', help='GPU IDs if n_pgu>1')
     parser.add_argument('--gpus_id', type=list, default=[0, 1, 2, 3], help='GPU IDs')
 
     args = parser.parse_args()
@@ -99,8 +99,8 @@ def main():
 
     # create data loader
     train_dataloader = R2DataLoader(args, tokenizer, split='train', shuffle=True, drop_last=True)
-    val_dataloader = R2DataLoader(args, tokenizer, split='val', shuffle=False, drop_last=False)
-    test_dataloader = R2DataLoader(args, tokenizer, split='test', shuffle=False, drop_last=False)
+    val_dataloader = R2DataLoader(args, tokenizer, split='val', shuffle=False, drop_last=True)
+    test_dataloader = R2DataLoader(args, tokenizer, split='test', shuffle=False, drop_last=True)
 
     # get function handles of loss and metrics
     criterion = compute_loss
