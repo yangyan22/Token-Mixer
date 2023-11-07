@@ -14,16 +14,42 @@ The medical image report generation datasets are available at the following link
 
 To train the model, you need to prepare our training dataset.
 
-Check the dataset path in mimic_train.py, and then run:
+Check the dataset path in train.py, and then run:
 ```
-python mimic_train.py
+python train.py
 ```
 
 ### Testing
 
-Check the model and data path in mimic_test.py, and then run:
+Check the model and data path in test.py, and then run:
 
 ```
-python mimic_test.py
+python test.py
 ```
 
+# Dependencies
+  - Python=3.7.3
+  - pytorch=1.8.1
+  - pickle
+  - tqdm
+  - time
+  - argparse
+  - sklearn
+  - json
+  - numpy 
+  - torchvision 
+  - itertools
+  - collections
+  - math
+  - os
+  - matplotlib
+  - PIL 
+  - itertools
+  - copy
+  - re
+  - abc
+  - pandas
+  - torch
+
+# the metric meteor
+the paraphrase-en.gz should be put into the .\pycocoevalcap\meteor\data, since the file is too big to upload.
