@@ -11,10 +11,8 @@ import os
 
 def parse_agrs():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--image_dir', type=str, default='/public/home/yangyan/YangYan/images_downsampled',
-                        help='the path to the directory containing the data.')
-    parser.add_argument('--ann_path', type=str, default='/public/home/jw12138/YZQ/mimic_all_paths.json',
-                        help='the path to the directory containing the data.')
+    parser.add_argument('--image_dir', type=str, default='/public/home/yangyan/YangYan/images_downsampled', help='the path to the directory containing the data.')
+    parser.add_argument('--ann_path', type=str, default='/public/home/jw12138/YZQ/DATA/mimic_all.json', help='the path to the directory containing the data.')
 
     # Data loader settings
     parser.add_argument('--dataset_name', type=str, default='mimic_cxr')
@@ -27,7 +25,9 @@ def parse_agrs():
     parser.add_argument('--visual_extractor', type=str, default='resnet50', help='the visual extractor to be used.')  # resnet18 resnet50 resnet101 densenet121 pvt
     parser.add_argument('--pretrained', type=bool, default=True, help='whether to load the pretrained visual extractor')
     parser.add_argument('--tags', type=int, default=0, help='whether to concatenate the MeSH in report')
-    parser.add_argument('--test_mode', type=str, default="sample_v", help='whether to concatenate the MeSH')
+    parser.add_argument('--test_mode', type=str, default="sample_t", help='whether to concatenate the MeSH')
+    parser.add_argument('--kernel', type=int, default=5, help='the dimension of Transformer.')
+    parser.add_argument('--RoundGap', type=int, default=4, help='the alternative training epochs in a round.')
 
     # Model settings (for Transformer)
     parser.add_argument('--d_model', type=int, default=512, help='the dimension of Transformer.')
