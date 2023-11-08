@@ -31,11 +31,14 @@ python test.py
   - Python=3.7.3
   - pytorch=1.8.1
   - pickle
+  - csv
   - tqdm
   - time
   - argparse
   - sklearn
   - json
+  - random
+  - einops
   - numpy 
   - torchvision 
   - itertools
@@ -50,6 +53,8 @@ python test.py
   - abc
   - pandas
   - torch
+  - timm
+  - matplotlib
 
 # the metric meteor
 the paraphrase-en.gz should be put into the .\pycocoevalcap\meteor\data, since the file is too big to upload.
