@@ -12,7 +12,7 @@ The medical image report generation datasets are available at the following link
 
 ### Training
 
-To train the model, you need to prepare our training dataset.
+To train the model, you need to prepare the training dataset. For example, the MIMIC-CXR-JPG data.
 
 Check the dataset path in train.py, and then run:
 ```
