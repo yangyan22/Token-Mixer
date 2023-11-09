@@ -83,7 +83,7 @@ class Model(nn.Module):
             else:
                 patch_feats = self.cnn(self.vision(images))
             batch_size, feat_size, _, _ = patch_feats.shape
-            patch_feats_f = patch_feats.reshape(batch_size, feat_size, -1).permute(0, 2, 1)  
+            patch_feats_f = patch_feats.reshape(batch_size, feat_size, -1).permute(0, 2, 1).contiguous()
             att_feats_0 = self.att_embed_image(patch_feats_f)
             
             if tags == 1:
@@ -128,7 +128,7 @@ class Model(nn.Module):
             else:
                 patch_feats = self.cnn(self.vision(images))
             batch_size, feat_size, _, _ = patch_feats.shape
-            patch_feats_f = patch_feats.reshape(batch_size, feat_size, -1).permute(0, 2, 1)  
+            patch_feats_f = patch_feats.reshape(batch_size, feat_size, -1).permute(0, 2, 1).contiguous()  
             att_feats_0 = self.att_embed_image(patch_feats_f)
             output_v, probabilities = self.encoder_decoder(att_feats_0, att_feats_0, mode='sample')
             return output_v
