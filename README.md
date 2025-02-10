@@ -1,4 +1,4 @@
-# Token-Mixer: Bind Image and Text in One Embedding Space for Medical Image Reporting (submitted to TMI-2023)
+# Token-Mixer: Bind Image and Text in One Embedding Space for Medical Image Reporting (Published in IEEE TMI)
 The Official Pytorch Implementation of Token-Mixer. 
 
 ## Abstract
