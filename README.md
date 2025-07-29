@@ -12,6 +12,7 @@ The medical image report generation datasets are available at the following link
 1. MIMIC-CXR-JPG data can be found at https://physionet.org/content/mimic-cxr-jpg/2.0.0/.
 2. IU X-Ray data can be found at https://openi.nlm.nih.gov/.
 3. Bladder Pathology data can be found at https://figshare.com/projects/nmi-wsi-diagnosis/61973.
+The json files for MIMIC-CXR and IU X-Ray can be found at https://pan.baidu.com/s/1YLMTxaIkmnxpSFedKsZ4-A, code: 65Zp.
 
 ### Training
 
